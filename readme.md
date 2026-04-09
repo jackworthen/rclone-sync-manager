@@ -1,9 +1,3 @@
-The "weirdness" you're seeing is likely because VS Code's Markdown preview or GitHub's renderer sometimes struggles with complex HTML-style badges or specific spacing if the file isn't formatted in a standard way.
-
-Here is a **GitHub-optimized version**. I’ve swapped the badges for standard Markdown image links and simplified the table and code blocks to ensure perfect rendering in VS Code and GitHub.
-
----
-
 # 🚀 Rclone Sync Manager
 
 A lightweight, interactive shell application designed to streamline your backup workflow. **Rclone Sync Manager** acts as a user-friendly wrapper for `rclone`, allowing you to manage source directories and destinations (Cloud or Local) without memorizing complex flags.
@@ -72,3 +66,5 @@ Feel free to fork and modify this script for your own personal backup needs!
 
 > [!IMPORTANT]
 > Always verify the **Dry Run** output when changing your common flags to ensure your data is being handled exactly as expected.
+
+Developed by Jack Worthen @jackworthen
