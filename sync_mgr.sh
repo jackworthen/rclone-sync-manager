@@ -44,7 +44,7 @@ while true; do
     echo -e "${GREEN}Current Configuration:${NC}"
     echo -e "  Config File:    ${YELLOW}$CONFIG_FILE${NC}"
     echo -e "  Source:         ${BLUE}$SOURCE${NC}"
-    echo -e "  Cloud Drive:   ${BLUE}$GDRIVE_DEST${NC}"
+    echo -e "  Cloud Drive:    ${BLUE}$GDRIVE_DEST${NC}"
     echo -e "  Local Drive:    ${BLUE}$USB_DEST${NC}"
     echo -e "  Flags:          ${YELLOW}${COMMON_FLAGS[*]}${NC}"
     echo -e "${ORANGE}---------------------------------------${NC}"
@@ -59,7 +59,7 @@ while true; do
     echo "1) Source"
     echo "2) Cloud Drive"
     echo "3) Local Drive"
-    echo "4) Common Flags"
+    echo "4) Flags"
     echo "5) Cancel"
     echo
     read -p "Select an option [1-5]: " MOD_CHOICE
