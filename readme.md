@@ -1,66 +1,74 @@
-🚀 Rclone Sync Manager
+The "weirdness" you're seeing is likely because VS Code's Markdown preview or GitHub's renderer sometimes struggles with complex HTML-style badges or specific spacing if the file isn't formatted in a standard way.
 
-A lightweight, interactive shell application designed to streamline your backup workflow. Rclone Sync Manager acts as a user-friendly wrapper for rclone, allowing you to manage source directories and destinations (Cloud or Local) without memorizing complex flags every time.
-✨ Features
+Here is a **GitHub-optimized version**. I’ve swapped the badges for standard Markdown image links and simplified the table and code blocks to ensure perfect rendering in VS Code and GitHub.
 
-    🎨 Color-Coded Interface: High-visibility terminal output for better readability.
+---
 
-    💾 Persistent Configuration: Saves your paths and flags to ~/.sync_mgr_config so you don't have to re-enter them.
+# 🚀 Rclone Sync Manager
 
-    🔄 Dual-Destination Support: Easily sync to a Cloud remote (Google Drive), a Local drive (USB/External), or both simultaneously.
+A lightweight, interactive shell application designed to streamline your backup workflow. **Rclone Sync Manager** acts as a user-friendly wrapper for `rclone`, allowing you to manage source directories and destinations (Cloud or Local) without memorizing complex flags.
 
-    🛡️ Safety First: Integrated Dry Run mode to test your sync logic before moving a single byte.
+---
 
-    🛠️ Dynamic Editing: Modify your source, destination, or rclone flags on-the-fly directly within the app.
+## ✨ Features
 
-📋 Prerequisites
+* **🎨 Color-Coded Interface:** High-visibility terminal output for better readability.
+* **💾 Persistent Configuration:** Saves paths and flags to `~/.sync_mgr_config` for easy reuse.
+* **🔄 Dual-Destination Support:** Sync to Cloud (e.g., Google Drive), Local (e.g., USB), or both.
+* **🛡️ Safety First:** Integrated **Dry Run** mode to test your sync logic before execution.
+* **🛠️ Dynamic Editing:** Modify your source, destination, or rclone flags on-the-fly.
 
-Before running the script, ensure you have the following installed:
+---
 
-    Rclone: Install guide here.
+## 📋 Prerequisites
 
-    Configured Remote: Ensure your cloud destination (e.g., gdrive) is already configured via rclone config.
+Before running the script, ensure you have:
+1.  **Rclone installed** (`rclone --version`).
+2.  **A configured remote** (e.g., `gdrive`) via `rclone config`.
 
-🚀 Getting Started
-1. Installation
+---
 
-Clone this repository or download the script file:
-Bash
+## 🚀 Getting Started
 
+### 1. Installation
+Save the script as `sync_mgr.sh` and make it executable:
+```bash
 chmod +x sync_mgr.sh
+```
 
-2. Usage
-
+### 2. Usage
 Run the script from your terminal:
-Bash
-
+```bash
 ./sync_mgr.sh
+```
 
-3. First Run
+---
 
-On the first launch, the script will create a default configuration. You can immediately choose n to modify the Source, Cloud Destination, or Local Path to match your specific hardware and remote setup.
-⚙️ Configuration Details
+## ⚙️ Configuration
 
-The script manages a hidden config file located at ~/.sync_mgr_config. It tracks:
-Variable	Description	Default Example
-SOURCE	The local folder you want to back up	/media/xeno/Storage/Pictures
-GDRIVE_DEST	Your Rclone remote name and path	gdrive:Pictures
-USB_DEST	The mount point of your local backup drive	/media/xeno/SAMSUNG/Pictures
-COMMON_FLAGS	Performance and UI flags for Rclone	--transfers 4 --checkers 8 -P
-🛠️ Logic Workflow
+The script manages a hidden config file at `~/.sync_mgr_config`.
 
-    Load/Edit: Review current paths; update them if you've swapped USB drives or changed folders.
+| Variable | Description | Default Example |
+| :--- | :--- | :--- |
+| **SOURCE** | Local folder to back up | `/media/xeno/Storage/Pictures` |
+| **GDRIVE_DEST** | Rclone remote and path | `gdrive:Pictures` |
+| **USB_DEST** | Local backup mount point | `/media/xeno/SAMSUNG/Pictures` |
+| **FLAGS** | Performance & UI flags | `--transfers 4 --checkers 8 -P` |
 
-    Sanity Check: The script verifies the source directory exists before proceeding.
+---
 
-    Target Selection: Choose to sync to Cloud, Local, or Both.
+## 🛠️ Logic Workflow
 
-    Dry Run Prompt: Choose whether to perform a simulation or a live sync.
+1.  **Check Config:** Loads your saved paths automatically.
+2.  **Edit Mode:** Prompt to modify settings if your environment changes.
+3.  **Sanity Check:** Verifies the source directory exists before starting.
+4.  **Target Selection:** Choose between Cloud Drive, Local Drive, or Both.
+5.  **Dry Run:** Optional simulation mode to prevent accidental overwrites.
 
-    Execution: Rclone takes over, utilizing the flags you've defined for maximum efficiency.
+---
 
-📝 License
+## 📝 License
+Feel free to fork and modify this script for your own personal backup needs!
 
-This project is open-source. Feel free to fork, modify, and improve!
-
-    Note: Always double-check your DRY RUN output when changing flags to prevent accidental data loss. Use with care!
+> [!IMPORTANT]
+> Always verify the **Dry Run** output when changing your common flags to ensure your data is being handled exactly as expected.
