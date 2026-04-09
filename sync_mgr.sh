@@ -42,11 +42,11 @@ echo -e "${ORANGE}---------------------------------------${NC}"
 while true; do
     # --- Configuration Summary Display ---
     echo -e "${GREEN}Current Configuration:${NC}"
-    echo -e "  Config File: ${YELLOW}$CONFIG_FILE${NC}"
-    echo -e "  Source:      ${BLUE}$SOURCE${NC}"
-    echo -e "  Gdrive:      ${BLUE}$GDRIVE_DEST${NC}"
-    echo -e "  USB:         ${BLUE}$USB_DEST${NC}"
-    echo -e "  Flags:       ${YELLOW}${COMMON_FLAGS[*]}${NC}"
+    echo -e "  Config File:    ${YELLOW}$CONFIG_FILE${NC}"
+    echo -e "  Source:         ${BLUE}$SOURCE${NC}"
+    echo -e "  Cloud Drive:   ${BLUE}$GDRIVE_DEST${NC}"
+    echo -e "  Local Drive:    ${BLUE}$USB_DEST${NC}"
+    echo -e "  Flags:          ${YELLOW}${COMMON_FLAGS[*]}${NC}"
     echo -e "${ORANGE}---------------------------------------${NC}"
     echo ""
 
@@ -57,8 +57,8 @@ while true; do
 
     echo -e "\nWhich configuration would you like to modify?"
     echo "1) Source"
-    echo "2) GDrive Destination"
-    echo "3) USB Destination"
+    echo "2) Cloud Drive"
+    echo "3) Local Drive"
     echo "4) Common Flags"
     echo "5) Cancel"
     echo
@@ -90,9 +90,9 @@ fi
 # 1. Select Destination
 echo
 echo "Where would you like to sync?"
-echo "1) Google Drive"
-echo "2) USB Device"
-echo "3) Both (Google Drive & USB)"
+echo "1) Cloude Drive"
+echo "2) Local Drive"
+echo "3) Both"
 echo
 read -p "Select an option [1-3]: " DEST_CHOICE
 
@@ -121,14 +121,14 @@ do_sync() {
 # 3. Execution Logic
 case $DEST_CHOICE in
     1)
-        do_sync "$GDRIVE_DEST" "Google Drive"
+        do_sync "$GDRIVE_DEST" "Cloud Drive"
         ;;
     2)
-        do_sync "$USB_DEST" "USB Device"
+        do_sync "$USB_DEST" "Local Drive"
         ;;
     3)
-        do_sync "$GDRIVE_DEST" "Google Drive"
-        do_sync "$USB_DEST" "USB Device"
+        do_sync "$GDRIVE_DEST" "Cloud Drive"
+        do_sync "$USB_DEST" "Local Drive"
         ;;
     *)
         echo "Invalid option. Exiting."
