@@ -73,4 +73,4 @@ Feel free to fork and modify this script for your own personal backup needs!
 > [!IMPORTANT]
 > Always verify the **Dry Run** output when changing your common flags to ensure your data is being handled exactly as expected.
 
-Developed by Jack Worthen[jackworthen](https://github.com/jackworthen)
+Developed by Jack Worthen
