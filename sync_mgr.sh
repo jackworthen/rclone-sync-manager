@@ -90,7 +90,7 @@ fi
 # 1. Select Destination
 echo
 echo "Where would you like to sync?"
-echo "1) Cloude Drive"
+echo "1) Cloud Drive"
 echo "2) Local Drive"
 echo "3) Both"
 echo
