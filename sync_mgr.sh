@@ -40,7 +40,7 @@ while true; do
     # --- Configuration Summary Display ---
     echo -e "${GREEN}Current Configuration:${NC}"
     echo -e "  Config File:    ${YELLOW}$CONFIG_FILE${NC}"
-    echo -e "  Source:          ${BLUE}$SOURCE${NC}"
+    echo -e "  Source:         ${BLUE}$SOURCE${NC}"
     echo -e "  Cloud Drive:    ${BLUE}$GDRIVE_DEST${NC}"
     echo -e "  Local Drive:    ${BLUE}$USB_DEST${NC}"
     echo -e "  Flags:          ${YELLOW}${COMMON_FLAGS[*]}${NC}"
