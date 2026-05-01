@@ -67,6 +67,6 @@ Profiles are stored as individual `.conf` files in a hidden directory: `~/.sync_
 ---
 
 ## 📝 License
-Feel free to fork and modify this script for your own personal backup needs!
+GNU General Public License v3.0
 
 Developed by Jack Worthen
