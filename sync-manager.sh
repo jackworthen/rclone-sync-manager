@@ -147,7 +147,7 @@ while true; do
     read -p "Perform a dry run first? (y/n): " DRY_RUN_INPUT
     case $DRY_RUN_INPUT in
         [Yy]* ) 
-            DRY_RUN_FLAG=("--dry-run")
+            DRY_RUN_FLAG=("--dry-run" "-q")
             echo -e "\n${RED}--- DRY RUN ENABLED (No files will be copied) ---${NC}"
             IS_DRY_RUN=true
             break ;;
