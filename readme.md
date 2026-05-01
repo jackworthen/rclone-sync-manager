@@ -1,4 +1,4 @@
-# 🚀 Rclone Sync Manager v2.0
+# 🚀 Rclone Sync Manager v2.1
 
 A professional, interactive shell application designed to streamline your backup workflow. **Rclone Sync Manager** acts as a user-friendly wrapper for `rclone`, allowing you to manage multiple sync profiles for different directories and destinations without memorizing complex flags.
 

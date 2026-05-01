@@ -23,21 +23,22 @@ list_profiles() {
 }
 
 # Color Codes
-ORANGE='\033[0;33m'
+ORANGE='\033[38;5;208m'
 BLUE='\033[1;34m'
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
+WHITE='\033[1;37m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 # --- Banner ---
 echo ""
-echo -e "   ${BLUE}▟████▙${NC}     ${ORANGE}RCLONE SYNC MANAGER ${YELLOW}v2.0${NC}"
+echo -e "   ${BLUE}▟████▙${NC}     ${ORANGE}RCLONE SYNC MANAGER ${WHITE}v2.1${NC}"
 echo -e "   ${BLUE}██▛▀▀▀${NC}"
 echo -e "   ${GREEN}▜████▙${NC}     ${GREEN}Effortless harmony between cloud and core.${NC}"
-echo -e "   ${YELLOW}▄▄▄▜██${NC}     ${BLUE}Profiles directory: ${PROFILES_DIR}${NC}"
+echo -e "   ${ORANGE}▄▄▄▜██${NC}     ${BLUE}Profiles directory: ${PROFILES_DIR}${NC}"
 echo -e "   ${RED}▜████▛${NC}"
 echo ""
+
 
 # --- Profile Selection & Creation ---
 while true; do
@@ -85,7 +86,7 @@ while true; do
                 if [[ -n "$L_RUN" ]]; then
                     STAT_COLOR=$GREEN
                     [[ "$L_STAT" == "Failed" ]] && STAT_COLOR=$RED
-                    INFO=" (${YELLOW}Last: $L_RUN${NC} | ${STAT_COLOR}$L_STAT${NC})"
+                    INFO=" (${ORANGE}Last: $L_RUN${NC} | ${STAT_COLOR}$L_STAT${NC})"
                 fi
                 echo -e "$((i+1))) ${PROFILES[$i]}$INFO"
             done
@@ -134,7 +135,7 @@ while true; do
             read -p "Select a profile to manage [1-${#PROFILES[@]}]: " M_CHOICE
             if [[ "$M_CHOICE" -gt 0 && "$M_CHOICE" -le "${#PROFILES[@]}" ]]; then
                 M_PROFILE="${PROFILES[$((M_CHOICE-1))]}"
-                echo -e "\nManaging Profile: ${YELLOW}$M_PROFILE${NC}"
+                echo -e "\nManaging Profile: ${ORANGE}$M_PROFILE${NC}"
                 echo "1) Edit Paths/Flags"
                 echo "2) Delete Profile"
                 echo "3) Cancel"
@@ -163,7 +164,7 @@ while true; do
                         ;;
                     *) 
                         echo ""
-                        echo -e "${YELLOW}Cancelled.${NC}"
+                        echo -e "${ORANGE}Cancelled.${NC}"
                         echo ""
                         ;;
                 esac
@@ -178,13 +179,13 @@ done
 
 # --- Configuration Summary Display ---
 echo -e "\n${ORANGE}---------------------------------------${NC}"
-echo -e "      Profile: ${YELLOW}$CURRENT_PROFILE${NC}"
+echo -e "      Profile: ${ORANGE}$CURRENT_PROFILE${NC}"
 echo -e "${ORANGE}---------------------------------------${NC}"
 echo -e "${GREEN}Current Configuration:${NC}"
 echo -e "  Source:         ${BLUE}$SOURCE${NC}"
 echo -e "  Cloud Drive:    ${BLUE}$GDRIVE_DEST${NC}"
 echo -e "  Local Drive:    ${BLUE}$USB_DEST${NC}"
-echo -e "  Flags:          ${YELLOW}${COMMON_FLAGS[*]}${NC}"
+echo -e "  Flags:          ${ORANGE}${COMMON_FLAGS[*]}${NC}"
 echo -e "${ORANGE}---------------------------------------${NC}"
 
 # --- Sanity Checks ---
@@ -233,7 +234,14 @@ do_sync() {
     shift 2
     local FLAGS=("$@")
     echo -e "\nStarting sync to ${BLUE}$LABEL${NC}..."
-    rclone copy "$SOURCE" "$DEST" "${COMMON_FLAGS[@]}" "${FLAGS[@]}" --stats 0
+    
+    # Use stdbuf to force line buffering and --stats 1s for a heartbeat
+    if command -v stdbuf >/dev/null 2>&1; then
+        stdbuf -oL rclone copy "$SOURCE" "$DEST" "${COMMON_FLAGS[@]}" "${FLAGS[@]}" --progress --stats 1s --stats 0
+    else
+        rclone copy "$SOURCE" "$DEST" "${COMMON_FLAGS[@]}" "${FLAGS[@]}" --progress --stats 1s --stats 0
+    fi
+    
     local EXIT_CODE=$?
     if [ $EXIT_CODE -eq 0 ]; then
         echo -e "\n${GREEN}Finished sync to $LABEL.${NC}"
@@ -266,17 +274,17 @@ SYNC_EXIT_CODE=$?
 if [ "$IS_DRY_RUN" = true ]; then
     echo ""
     while true; do
-        echo -en "${ORANGE}Dry run complete. Would you like to proceed with the ACTUAL transfer? ${YELLOW}(y/n)${NC}: "
+        echo -en "${ORANGE}Dry run complete. Would you like to proceed with the ACTUAL transfer? ${ORANGE}(y/n)${NC}: "
         read PROCEED_INPUT
         case $PROCEED_INPUT in
             [Yy]* )
-                echo -e "\n${YELLOW}--- STARTING ACTUAL TRANSFER ---${NC}"
+                echo -e "\n${ORANGE}--- STARTING ACTUAL TRANSFER ---${NC}"
                 run_transfer
                 SYNC_EXIT_CODE=$?
                 IS_DRY_RUN=false
                 break ;;
             [Nn]* )
-                echo -e "\n${YELLOW}Transfer cancelled by user.${NC}"
+                echo -e "\n${ORANGE}Transfer cancelled by user.${NC}"
                 break ;;
             * ) echo -e "${RED}Invalid input. Please enter 'y' or 'n'.${NC}" ;;
         esac
