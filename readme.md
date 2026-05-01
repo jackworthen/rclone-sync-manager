@@ -1,16 +1,17 @@
-# 🚀 Rclone Sync Manager
+# 🚀 Rclone Sync Manager v2.0
 
-A lightweight, interactive shell application designed to streamline your backup workflow. **Rclone Sync Manager** acts as a user-friendly wrapper for `rclone`, allowing you to manage source directories and destinations (Cloud or Local) without memorizing complex flags.
+A professional, interactive shell application designed to streamline your backup workflow. **Rclone Sync Manager** acts as a user-friendly wrapper for `rclone`, allowing you to manage multiple sync profiles for different directories and destinations without memorizing complex flags.
 
 ---
 
 ## ✨ Features
 
-* **🎨 Color-Coded Interface:** High-visibility terminal output for better readability.
-* **💾 Persistent Configuration:** Saves paths and flags to `~/.sync_mgr_config` for easy reuse.
+* **🗂️ Profile-Based Management:** Create and save multiple unique profiles (e.g., Pictures, Documents, Work) for different sync tasks.
+* **🎨 Gemini-Inspired UI:** A modern, minimalist interface with a professional logo, vertical alignment, and color-coded feedback.
+* **💾 Automatic Migration:** Seamlessly upgrades your legacy single-config setup to the new profile system on first run.
 * **🔄 Dual-Destination Support:** Sync to Cloud (e.g., Google Drive), Local (e.g., USB), or both.
-* **🛡️ Safety First:** Integrated **Dry Run** mode to test your sync logic before execution.
-* **🛠️ Dynamic Editing:** Modify your source, destination, or rclone flags on-the-fly.
+* **🛡️ Interactive Dry Run:** Integrated safety mode that allows you to verify your sync and then immediately kick off the actual transfer if satisfied.
+* **📈 Optimized Output:** Clean, non-redundant rclone statistics for better readability during execution.
 
 ---
 
@@ -25,46 +26,46 @@ Before running the script, ensure you have:
 ## 🚀 Getting Started
 
 ### 1. Installation
-Save the script as `sync_mgr.sh` and make it executable:
+Clone the repository or save `sync-manager.sh` and make it executable:
 ```bash
-chmod +x sync_mgr.sh
+chmod +x sync-manager.sh
 ```
 
 ### 2. Usage
 Run the script from your terminal:
 ```bash
-./sync_mgr.sh
+./sync-manager.sh
 ```
 
 ---
 
 ## ⚙️ Configuration
 
-The script manages a hidden config file at `~/.sync_mgr_config`.
+Profiles are stored as individual `.conf` files in a hidden directory: `~/.sync_mgr_profiles/`.
 
-| Variable | Description | Default Example |
-| :--- | :--- | :--- |
-| **SOURCE** | Local folder to back up | `/media/xeno/Storage/Pictures` |
-| **GDRIVE_DEST** | Rclone remote and path | `gdrive:Pictures` |
-| **USB_DEST** | Local backup mount point | `/media/xeno/SAMSUNG/Pictures` |
-| **FLAGS** | Performance & UI flags | `--transfers 4 --checkers 8 -P` |
+| Field | Description |
+| :--- | :--- |
+| **Profile Name** | A unique label for your sync task (e.g., `Work_Backups`). |
+| **SOURCE** | The local folder you wish to back up. |
+| **GDRIVE_DEST** | Your Rclone remote name and path (e.g., `gdrive:Backups`). |
+| **USB_DEST** | Your local backup mount point or drive path. |
+| **FLAGS** | Performance and UI flags passed directly to rclone. |
 
 ---
 
 ## 🛠️ Logic Workflow
 
-1.  **Check Config:** Loads your saved paths automatically.
-2.  **Edit Mode:** Prompt to modify settings if your environment changes.
-3.  **Sanity Check:** Verifies the source directory exists before starting.
-4.  **Target Selection:** Choose between Cloud Drive, Local Drive, or Both.
-5.  **Dry Run:** Optional simulation mode to prevent accidental overwrites.
+1.  **Banner & Setup:** Displays the professional v2.0 banner and ensures the profiles directory exists.
+2.  **Profile Selection:** Choose an existing profile or create a new one with a guided setup wizard.
+3.  **Summary:** Displays the active configuration for the selected profile before proceeding.
+4.  **Target Selection:** Choose to sync to Cloud Drive, Local Drive, or Both.
+5.  **Interactive Dry Run:**
+    * Performs a simulation of the sync.
+    * If successful, prompts you to immediately start the **ACTUAL** transfer without restarting.
 
 ---
 
 ## 📝 License
 Feel free to fork and modify this script for your own personal backup needs!
-
-> [!IMPORTANT]
-> Always verify the **Dry Run** output when changing your common flags to ensure your data is being handled exactly as expected.
 
 Developed by Jack Worthen
