@@ -27,8 +27,10 @@ Before running the script, ensure you have:
 ## 🚀 Getting Started
 
 ### 1. Installation
-Clone the repository or save `sync-manager.sh` and make it executable:
+Clone the repository and make the script executable:
 ```bash
+git clone https://github.com/jackworthen/rclone-sync-manager
+cd rclone-sync-manager
 chmod +x sync-manager.sh
 ```
 
