@@ -71,4 +71,4 @@ Profiles are stored as individual `.conf` files in a hidden directory: `~/.sync_
 ## 📝 License
 This project is licensed under GNU GENERAL PUBLIC LICENSE - see the LICENSE file for details.
 
-Developed by Jack Worthen
+ Developed by Jack Worthen
